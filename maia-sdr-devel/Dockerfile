@@ -17,12 +17,13 @@ RUN apt-get update \
            libgtk-3-0 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && pip3 install cocotb cocotb-bus \
+    && pip install -U pip \
+    && pip install cocotb cocotb-bus \
     && cd /tmp \
-    && wget https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2023-01-23/oss-cad-suite-linux-x64-20230123.tgz \
+    && wget https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2023-03-12/oss-cad-suite-linux-x64-20230312.tgz \
     && mkdir /opt/oss-cad-suite \
-    && tar zxf oss-cad-suite-linux-x64-20230123.tgz -C /opt \
-    && rm -f oss-cad-suite-linux-x64-20230123.tgz \
+    && tar zxf oss-cad-suite-linux-x64-20230312.tgz -C /opt \
+    && rm -f oss-cad-suite-linux-x64-20230312.tgz \
     && git clone https://github.com/amaranth-lang/amaranth \
     && cd amaranth \
     && pip install . \
