@@ -2,7 +2,7 @@
 FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
-ADD vivado2019_1_gcc-arm-linux-gnueabi.tar.xz /opt/gcc-arm-linux-gnueabi
+COPY vivado2021_2_gcc-arm-linux-gnueabi.tar.xz /
 ENV RUSTUP_HOME=/opt/rust
 ARG CARGO_HOME=/opt/rust
 SHELL ["/bin/bash", "-c"]
@@ -14,16 +14,20 @@ RUN apt-get update \
            libgtk2.0-0 locales git \
            zip unzip dfu-util fakeroot u-boot-tools device-tree-compiler mtools \
            bison flex libncurses5-dev libssl-dev bc cpio rsync cmake \
-           libgtk-3-0 \
+           libgtk-3-0 xz-utils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
+    && mkdir /opt/gcc-arm-linux-gnueabi \
+    && cd /opt/gcc-arm-linux-gnueabi \
+    && tar Jxf /vivado2021_2_gcc-arm-linux-gnueabi.tar.xz \
+    && rm -f /vivado2021_2_gcc-arm-linux-gnueabi.tar.xz \
     && pip install -U pip \
     && pip install cocotb cocotb-bus \
     && cd /tmp \
-    && wget https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2023-03-12/oss-cad-suite-linux-x64-20230312.tgz \
+    && wget https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2023-03-25/oss-cad-suite-linux-x64-20230325.tgz \
     && mkdir /opt/oss-cad-suite \
-    && tar zxf oss-cad-suite-linux-x64-20230312.tgz -C /opt \
-    && rm -f oss-cad-suite-linux-x64-20230312.tgz \
+    && tar zxf oss-cad-suite-linux-x64-20230325.tgz -C /opt \
+    && rm -f oss-cad-suite-linux-x64-20230325.tgz \
     && git clone https://github.com/amaranth-lang/amaranth \
     && cd amaranth \
     && pip install . \
