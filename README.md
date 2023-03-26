@@ -58,3 +58,10 @@ docker exec -u 0 -it maia-sdr-devel /bin/bash
 ```
 From this session, it is possible to run the Vivado installer and choose
 `/opt/Xilinx` as the installation path.
+
+## cross-armv7-buildroot-linux-uclibc-gnueabihf
+
+[ghcr.io/maia-sdr/cross-armv7-buildroot-linux-uclibc-gnueabihf](https://github.com/orgs/maia-sdr/packages/container/package/cross-armv7-buildroot-linux-uclibc-gnueabihf) is used to build
+[maia-httpd](https://github.com/maia-sdr/maia-sdr/tree/main/maia-httpd) with
+[cross](https://github.com/cross-rs/cross)
+and the buildroot toolchain with uclibc.
