@@ -1,12 +1,12 @@
 # Maia SDR Docker images
 
 This repository contains the Dockerfiles and related assets used in [Maia
-SDR](https://maia-sdr.org). Pre-built images are available in the
-[maiasdr dockerhub](https://hub.docker.com/u/maiasdr).
+SDR](https://maia-sdr.org). Docker images are published as GHCR
+[packages](https://github.com/orgs/maia-sdr/packages?repo_name=maia-sdr-docker).
 
 ## maia-sdr-devel
 
-[maiasdr/maia-sdr-devel](https://hub.docker.com/r/maiasdr/maia-sdr-devel)
+[ghcr.io/maia-sdr/maia-sdr-devel](https://github.com/orgs/maia-sdr/packages/container/package/maia-sdr-devel)
 contains all the development tools used in Maia SDR. These are:
 
 * [Amaranth](https://github.com/amaranth-lang/amaranth).
@@ -35,7 +35,7 @@ docker run --rm --net host -e DISPLAY=$DISPLAY -e TERM \
 	--name=maia-sdr-devel --hostname=maia-sdr-devel \
 	-v vivado2021_2_volume:/opt/Xilinx -v maia_sdr_devel_home:/home \
         -v $HOME:/hdl \
-	-it maiasdr/maia-sdr-devel
+	-it ghcr.io/maia-sdr/maia-sdr-devel
 ```
 
 This assumes that Vivado has been installed to a Docker volume
