@@ -1,4 +1,4 @@
-name: Create and publish cross-buildroot Docker image
+name: Build and publish cross-buildroot Docker image
 
 on:
   push:
