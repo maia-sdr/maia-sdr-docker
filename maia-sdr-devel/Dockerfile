@@ -24,10 +24,10 @@ RUN apt-get update \
     && pip install -U pip \
     && pip install cocotb cocotb-bus \
     && cd /tmp \
-    && wget https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2023-06-10/oss-cad-suite-linux-x64-20230610.tgz \
+    && wget https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2023-09-03/oss-cad-suite-linux-x64-20230903.tgz \
     && mkdir /opt/oss-cad-suite \
-    && tar zxf oss-cad-suite-linux-x64-20230610.tgz -C /opt \
-    && rm -f oss-cad-suite-linux-x64-20230610.tgz \
+    && tar zxf oss-cad-suite-linux-x64-20230903.tgz -C /opt \
+    && rm -f oss-cad-suite-linux-x64-20230903.tgz \
     && git clone https://github.com/amaranth-lang/amaranth \
     && cd amaranth \
     && pip install . \
