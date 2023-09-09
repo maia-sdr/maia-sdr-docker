@@ -1,6 +1,9 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu:22.04
 
+ARG OSS_CAD_SUITE_RELEASE=20230909
+ARG AMARANTH_HASH=a9d03805fff8c3d4f6769320323dbf44619fe422
+
 ARG DEBIAN_FRONTEND=noninteractive
 COPY vivado2021_2_gcc-arm-linux-gnueabi.tar.xz /
 ENV RUSTUP_HOME=/opt/rust
@@ -24,12 +27,13 @@ RUN apt-get update \
     && pip install -U pip \
     && pip install cocotb cocotb-bus \
     && cd /tmp \
-    && wget https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2023-09-03/oss-cad-suite-linux-x64-20230903.tgz \
+    && wget https://github.com/YosysHQ/oss-cad-suite-build/releases/download/${OSS_CAD_SUITE_RELEASE:0:4}-${OSS_CAD_SUITE_RELEASE:4:2}-${OSS_CAD_SUITE_RELEASE:6:2}/oss-cad-suite-linux-x64-${OSS_CAD_SUITE_RELEASE}.tgz \
     && mkdir /opt/oss-cad-suite \
-    && tar zxf oss-cad-suite-linux-x64-20230903.tgz -C /opt \
-    && rm -f oss-cad-suite-linux-x64-20230903.tgz \
+    && tar zxf oss-cad-suite-linux-x64-${OSS_CAD_SUITE_RELEASE}.tgz -C /opt \
+    && rm -f oss-cad-suite-linux-x64-${OSS_CAD_SUITE_RELEASE}.tgz \
     && git clone https://github.com/amaranth-lang/amaranth \
     && cd amaranth \
+    && git checkout $AMARANTH_HASH \
     && pip install . \
     && cd .. \
     && rm -rf amaranth \
