@@ -1,11 +1,10 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu:22.04
 
-ARG OSS_CAD_SUITE_RELEASE=20230909
-ARG AMARANTH_HASH=a9d03805fff8c3d4f6769320323dbf44619fe422
+ARG OSS_CAD_SUITE_RELEASE=20231119
+ARG AMARANTH_HASH=f9da3c0d166dd2be189945dca5a94e781e74afeb
 
 ARG DEBIAN_FRONTEND=noninteractive
-COPY vivado2021_2_gcc-arm-linux-gnueabi.tar.xz /
 ENV RUSTUP_HOME=/opt/rust
 ARG CARGO_HOME=/opt/rust
 SHELL ["/bin/bash", "-c"]
@@ -17,13 +16,9 @@ RUN apt-get update \
            libgtk2.0-0 locales git \
            zip unzip dfu-util fakeroot u-boot-tools device-tree-compiler mtools \
            bison flex libncurses5-dev libssl-dev bc cpio rsync cmake \
-           libgtk-3-0 xz-utils \
+           libgtk-3-0 xz-utils libgmp-dev libmpc-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && mkdir /opt/gcc-arm-linux-gnueabi \
-    && cd /opt/gcc-arm-linux-gnueabi \
-    && tar Jxf /vivado2021_2_gcc-arm-linux-gnueabi.tar.xz \
-    && rm -f /vivado2021_2_gcc-arm-linux-gnueabi.tar.xz \
     && pip install -U pip \
     && pip install cocotb cocotb-bus \
     && cd /tmp \
