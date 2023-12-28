@@ -17,15 +17,11 @@ contains all the development tools used in Maia SDR. These are:
 * The [Rust](https://www.rust-lang.org/) toolchain for
   `armv7-unknown-linux-gnueabihf` and `wasm32-unknown-unknown`.
 * [wasm-pack](https://rustwasm.github.io/wasm-pack/).
-* The gcc toolchain distributed with Vitis 2021.2. This is the
-  toolchain used to build the Pluto SDR kernel and u-boot. Starting
-  with the ADI Pluto firmware v0.36, the buildroot toolchain is used
-  to build the buildroot rootfs.
 * Miscellaneous tools used to build the Pluto SDR firmware image
   (buildroot requirements, etc.)
 
 Additionally, the image has all the requirements to run
-[Vivado](https://www.xilinx.com/products/design-tools/vivado.html) 2021.2, which
+[Vivado](https://www.xilinx.com/products/design-tools/vivado.html) 2022.2, which
 is needed to build the FPGA bitstream. Vivado needs to be installed manually on
 a volume as described below.
 
@@ -33,20 +29,20 @@ The docker image can be run as follows:
 ```
 docker run --rm --net host -e DISPLAY=$DISPLAY -e TERM \
 	--name=maia-sdr-devel --hostname=maia-sdr-devel \
-	-v vivado2021_2_volume:/opt/Xilinx -v maia_sdr_devel_home:/home \
+	-v vivado2022_2_volume:/opt/Xilinx -v maia_sdr_devel_home:/home \
         -v $HOME:/hdl \
 	-it ghcr.io/maia-sdr/maia-sdr-devel
 ```
 
 This assumes that Vivado has been installed to a Docker volume
-`vivado2021_2_volume` and uses a volume to hold the home directory (in order to
+`vivado2022_2_volume` and uses a volume to hold the home directory (in order to
 have persistent bash history, etc.). It mounts the user home directory into
 `/hdl`, so that the Maia SDR repositories working copies can be accessed
 (different paths can be used here.).
 
 The home of the docker container user should contain the following in `.bashrc`:
 ```
-source /opt/Xilinx/Vivado/2021.2/settings64.sh
+source /opt/Xilinx/Vivado/2022.2/settings64.sh
 source /opt/rust/env
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin/:/usr/bin:/sbin:/bin:/opt/gcc-arm-linux-gnueabi/bin:$PATH:/opt/oss-cad-suite/bin
 ```
