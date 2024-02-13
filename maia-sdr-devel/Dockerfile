@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu:22.04
 
-ARG OSS_CAD_SUITE_RELEASE=20231119
-ARG AMARANTH_HASH=f9da3c0d166dd2be189945dca5a94e781e74afeb
+ARG OSS_CAD_SUITE_RELEASE=20240213
+ARG AMARANTH_RELEASE=0.4.1
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV RUSTUP_HOME=/opt/rust
@@ -17,6 +17,8 @@ RUN apt-get update \
            zip unzip dfu-util fakeroot u-boot-tools device-tree-compiler mtools \
            bison flex libncurses5-dev libssl-dev bc cpio rsync cmake \
            libgtk-3-0 xz-utils libgmp-dev libmpc-dev \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && pip install -U pip \
@@ -26,12 +28,7 @@ RUN apt-get update \
     && mkdir /opt/oss-cad-suite \
     && tar zxf oss-cad-suite-linux-x64-${OSS_CAD_SUITE_RELEASE}.tgz -C /opt \
     && rm -f oss-cad-suite-linux-x64-${OSS_CAD_SUITE_RELEASE}.tgz \
-    && git clone https://github.com/amaranth-lang/amaranth \
-    && cd amaranth \
-    && git checkout $AMARANTH_HASH \
-    && pip install . \
-    && cd .. \
-    && rm -rf amaranth \
+    && pip install amaranth==${AMARANTH_RELEASE} \
     && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path -t armv7-unknown-linux-gnueabihf,wasm32-unknown-unknown \
     && source /opt/rust/env \
     && curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh \
