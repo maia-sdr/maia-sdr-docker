@@ -16,7 +16,7 @@ RUN apt-get update \
            libgtk2.0-0 locales git \
            zip unzip dfu-util fakeroot u-boot-tools device-tree-compiler mtools \
            bison flex libncurses5-dev libssl-dev bc cpio rsync cmake \
-           libgtk-3-0 xz-utils libgmp-dev libmpc-dev \
+           libgtk-3-0 xz-utils libgmp-dev libmpc-dev lz4 \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && apt-get clean \
