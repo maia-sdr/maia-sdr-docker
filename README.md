@@ -64,10 +64,3 @@ can be used to build
 stable Docker image, it contains some packages required to build
 [pm-remez](https://github.com/maia-sdr/pm-remez), including the Fortran
 cross-compiler.
-
-## cross-armv7-buildroot-linux-uclibc-gnueabihf
-
-[ghcr.io/maia-sdr/cross-armv7-buildroot-linux-uclibc-gnueabihf](https://github.com/orgs/maia-sdr/packages/container/package/cross-armv7-buildroot-linux-uclibc-gnueabihf) is used to build
-[maia-httpd](https://github.com/maia-sdr/maia-sdr/tree/main/maia-httpd) with
-[cross](https://github.com/cross-rs/cross)
-and the buildroot toolchain with uclibc.
