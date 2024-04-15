@@ -60,7 +60,8 @@ From this session, it is possible to run the Vivado installer and choose
 [ghcr.io/maia-sdr/cross-armv7-unknown-linux-gnueabihf-maia-sdr](https://github.com/orgs/maia-sdr/packages/container/package/cross-armv7-unknown-linux-gnueabihf-maia-sdr)
 can be used to build
 [maia-httpd](https://github.com/maia-sdr/maia-sdr/tree/main/maia-httpd) with
-[cross](https://github.com/cross-rs/cross). In addition to the usual cross
-stable Docker image, it contains some packages required to build
-[pm-remez](https://github.com/maia-sdr/pm-remez), including the Fortran
-cross-compiler.
+[cross](https://github.com/cross-rs/cross). It is a cross Docker image that uses
+the same buildroot Linaro toolchain that is used to build the ADALM Pluto
+firmware image. It contains some packages required to build
+[pm-remez](https://github.com/maia-sdr/pm-remez), including the `gfortran`
+cross-compiler from the buildroot Linaro toolchain.
