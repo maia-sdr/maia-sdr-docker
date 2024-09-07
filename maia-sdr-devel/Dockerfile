@@ -17,7 +17,7 @@ RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y make gcc g++ python3 python3-dev python3-pip \
            python3-pytest python3-numpy python3-scipy iverilog wget curl \
-           default-jre libxrender-dev libxtst-dev \
+           default-jre libxrender-dev libxtst-dev file \
            libgtk2.0-0 locales git python3-build python3-venv twine \
            zip unzip dfu-util fakeroot u-boot-tools device-tree-compiler mtools \
            bison flex libncurses5-dev libssl-dev bc cpio rsync cmake \
