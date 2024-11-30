@@ -22,7 +22,7 @@ RUN apt-get update \
            zip unzip dfu-util fakeroot u-boot-tools device-tree-compiler mtools \
            bison flex libncurses5-dev libssl-dev bc cpio rsync cmake \
            libgtk-3-0 xz-utils libgmp-dev libmpc-dev lz4 pkg-config \
-           libclang-dev \
+           libclang-dev xvfb \
     && wget http://launchpadlibrarian.net/666971015/libtinfo5_6.3-2ubuntu0.1_amd64.deb \
     && dpkg -i libtinfo5_6.3-2ubuntu0.1_amd64.deb \
     && rm -f libtinfo5_6.3-2ubuntu0.1_amd64.deb \
