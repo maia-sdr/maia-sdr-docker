@@ -28,10 +28,11 @@ a volume as described below.
 The docker image can be run as follows:
 ```
 docker run --rm --net host -e DISPLAY=$DISPLAY -e TERM \
-	--name=maia-sdr-devel --hostname=maia-sdr-devel \
-	-v vivado2023_2:/opt/Xilinx -v maia_sdr_devel_home:/home \
-        -v $HOME:/hdl \
-	-it ghcr.io/maia-sdr/maia-sdr-devel
+    --name=maia-sdr-devel --hostname=maia-sdr-devel \
+    -v vivado2023_2:/opt/Xilinx -v maia_sdr_devel_home:/home \
+    -v $HOME:/hdl \
+    --ulimit "nofile=1024:1048576" \
+    -it ghcr.io/maia-sdr/maia-sdr-devel
 ```
 
 This assumes that Vivado has been installed to a Docker volume
