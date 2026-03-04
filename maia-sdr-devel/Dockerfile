@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu:24.04
 
-ARG OSS_CAD_SUITE_RELEASE=20251108
+ARG OSS_CAD_SUITE_RELEASE=20260304
 ARG AMARANTH_RELEASE=0.5.8
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -39,7 +39,7 @@ RUN apt-get update \
     && pip install --break-system-packages amaranth==${AMARANTH_RELEASE} \
     && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path -t armv7-unknown-linux-gnueabihf,wasm32-unknown-unknown \
     && source /opt/rust/env \
-    && curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh \
+    && curl https://drager.github.io/wasm-pack/installer/init.sh -sSf | bash \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
     && dpkg-reconfigure --frontend=noninteractive locales
 USER ubuntu
